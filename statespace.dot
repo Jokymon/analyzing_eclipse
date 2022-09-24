@@ -1,0 +1,28 @@
+digraph G {
+    node [ fontname="Noto Sans" ];
+    edge [ fontname="Noto Sans" ];
+
+    a1 [label = "&#9312;\nA1 B3 [A]"]
+    a2 [label = "&#9313;\nA1 B3 [B]"]
+    a3 [label = "&#9314;\nA+ B3", penwidth=3]
+    a4 [label = "&#9315;\nA1 B1 [B]"]
+    a5 [label = "&#9316;\nA1 B1 [A]"]
+    a6 [label = "&#9317;\nA1 B+", penwidth=3]
+    a7 [label = "&#9318;\nA+ B1", penwidth=3]
+
+    a1 -> a2 [label = "4/9"]
+    a2 -> a1 [label = "5/6"]
+    a2 -> a3 [label = "1/6"]
+    a3 -> a3 [label = "1"]
+
+    a1 -> a6 [label = "1/9"]
+
+    a1 -> a4 [label = "4/9"]
+    a4 -> a5 [label = "5/6"]
+    a5 -> a4 [label = "4/9"]
+    a5 -> a6 [label = "5/9"]
+    a6 -> a6 [label = "1"]
+
+    a4 -> a7 [label = "1/6"]
+    a7 -> a7 [label = "1"]
+}
