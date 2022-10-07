@@ -25,7 +25,7 @@ jobs:
 
     - name: Install necessary tools
       run: |
-        apt-get install graphviz inkscape
+        sudo apt-get install -y graphviz inkscape
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
