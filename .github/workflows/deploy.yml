@@ -23,6 +23,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install necessary tools
+      run: |
+        apt-get install graphviz inkscape
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
@@ -32,6 +36,10 @@ jobs:
         pip install -r requirements.txt
 
     # Build the example book
+    - name: Build images
+      run: |
+        dot statespace.dot -Tsvg -o images/statespace.svg
+        inkscape --export-type png --export-filename images/statespace.png images/statespace.svg
     - name: Build book
       run: |
         jupyter-book build .

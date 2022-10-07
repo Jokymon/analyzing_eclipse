@@ -1,4 +1,5 @@
 _build/
+images/statespace.*
 
 .ipynb_checkpoints/
 .venv/
