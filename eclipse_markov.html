@@ -375,9 +375,9 @@ title="Print to PDF"
 <h1>Markov analysis<a class="headerlink" href="#markov-analysis" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">matrix_power</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+from numpy.linalg import matrix_power
+np.set_printoptions(precision=3, suppress=True)
 </pre></div>
 </div>
 </div>
@@ -387,8 +387,8 @@ title="Print to PDF"
 <p>From this graph we can extract the following transition probability matrix. Each line represents the transition probabilities for one of the states. The first line for example contains the probabilities for state ①.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probabilities</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>probabilities=np.array([[0, 4/9, 0, 4/9, 0, 1/9, 0], [5/6, 0, 1/6, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 5/6, 0, 1/6], [0, 0, 0, 4/9, 0, 5/9, 0], [0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 1]])
+print(probabilities)
 </pre></div>
 </div>
 </div>
@@ -407,15 +407,15 @@ title="Print to PDF"
 <p>Now let’s play around a little with these probabilities. The initial state of the game means, that the probability of being in state ① is 100% or 1.0. So we define the <code class="docutils literal notranslate"><span class="pre">initial_state</span></code> like this and then see, what the probabilities are after two turns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>initial_state = np.array([1, 0, 0, 0, 0, 0, 0])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>p2=np.dot(probabilities, probabilities)
+print(p2)
 </pre></div>
 </div>
 </div>
@@ -433,7 +433,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.dot(initial_state, p2)
 </pre></div>
 </div>
 </div>
@@ -449,7 +449,7 @@ title="Print to PDF"
 <p>But with a sufficient amount of Markov steps we should reach a steady state. Let’s try 1000 steps.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">matrix_power</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(np.dot(initial_state, matrix_power(probabilities, 1000)))
 </pre></div>
 </div>
 </div>
@@ -462,7 +462,7 @@ title="Print to PDF"
 <p>How about after 2000 steps?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">matrix_power</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(np.dot(initial_state, matrix_power(probabilities, 2000)))
 </pre></div>
 </div>
 </div>
@@ -476,15 +476,15 @@ title="Print to PDF"
 <p>So let’s see, if this could be more efficient and let’s determine an minimal amount of iterations needed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prev</span> <span class="o">=</span> <span class="n">probabilities</span>
-<span class="nb">next</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
-<span class="n">power</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">while</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
-    <span class="n">power</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">prev</span> <span class="o">=</span> <span class="nb">next</span>
-    <span class="nb">next</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">prev</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Steady state after </span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s2"> iterations&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Probabilities of states in steady state: </span><span class="se">\n</span><span class="si">{</span><span class="n">prev</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>prev = probabilities
+next = np.dot(initial_state, probabilities)
+power = 0
+while not np.allclose(prev, next):
+    power += 1
+    prev = next
+    next = np.dot(prev, probabilities)
+print(f&quot;Steady state after {power} iterations&quot;)
+print(f&quot;Probabilities of states in steady state: \n{prev}&quot;)
 </pre></div>
 </div>
 </div>

@@ -335,54 +335,54 @@ title="Print to PDF"
 <h1>Monte Carlo simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import random
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">State</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class State:
+    def __init__(self):
+        self.reset()
         
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">turn_of_player</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hull_a</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hull_b</span> <span class="o">=</span> <span class="mi">3</span>
+    def reset(self):
+        self.turn_of_player = &quot;a&quot;
+        self.hull_a = 1
+        self.hull_b = 3
         
-    <span class="k">def</span> <span class="nf">_damage_by_a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculate damage caused by player a&quot;&quot;&quot;</span>
-        <span class="n">dmg</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">5</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="n">dmg</span> <span class="o">+=</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">5</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="n">dmg</span>
+    def _damage_by_a(self):
+        &quot;&quot;&quot;Calculate damage caused by player a&quot;&quot;&quot;
+        dmg = 2 if random.randint(1,6)&gt;=5 else 0
+        dmg += 2 if random.randint(1,6)&gt;=5 else 0
+        return dmg
     
-    <span class="k">def</span> <span class="nf">_damage_by_b</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculate damage caused by player b&quot;&quot;&quot;</span>
-        <span class="n">dmg</span> <span class="o">=</span> <span class="mi">4</span> <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">6</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="n">dmg</span>
+    def _damage_by_b(self):
+        &quot;&quot;&quot;Calculate damage caused by player b&quot;&quot;&quot;
+        dmg = 4 if random.randint(1,6)&gt;=6 else 0
+        return dmg
     
-    <span class="k">def</span> <span class="nf">next_turn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Perform the next game turn. Throw the dice and calculate the damage based on who&#39;s turn it currently is.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">turn_of_player</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">hull_b</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_damage_by_a</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">turn_of_player</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">hull_a</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_damage_by_b</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">turn_of_player</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+    def next_turn(self):
+        &quot;&quot;&quot;Perform the next game turn. Throw the dice and calculate the damage based on who&#39;s turn it currently is.&quot;&quot;&quot;
+        if self.turn_of_player == &quot;a&quot;:
+            self.hull_b -= self._damage_by_a()
+            self.turn_of_player = &quot;b&quot;
+        else:
+            self.hull_a -= self._damage_by_b()
+            self.turn_of_player = &quot;a&quot;
             
-    <span class="k">def</span> <span class="nf">winner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return who is the current winner. It is either &#39;a&#39; or &#39;b&#39; or if there is currently no winner returns None.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hull_a</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">hull_b</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;a&quot;</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">hull_a</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">hull_b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;b&quot;</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">hull_a</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">hull_b</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Somehow both players lost&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
+    def winner(self):
+        &quot;&quot;&quot;Return who is the current winner. It is either &#39;a&#39; or &#39;b&#39; or if there is currently no winner returns None.&quot;&quot;&quot;
+        if self.hull_a &gt; 0 and self.hull_b &lt; 0:
+            return &quot;a&quot;
+        elif self.hull_a &lt; 0 and self.hull_b &gt; 0:
+            return &quot;b&quot;
+        elif self.hull_a &lt; 0 and self.hull_b &lt; 0:
+            raise ValueError(&quot;Somehow both players lost&quot;)
+        else:
+            return None
         
-<span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+state = State()
 </pre></div>
 </div>
 </div>
@@ -390,7 +390,7 @@ title="Print to PDF"
 <p>Store the amount of times player ‘a’ wins in this variable and initialize it to 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_wins</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a_wins = 0
 </pre></div>
 </div>
 </div>
@@ -398,7 +398,7 @@ title="Print to PDF"
 <p>Now simulate multiple games. We store the amount of simulated games in the variable <code class="docutils literal notranslate"><span class="pre">runs</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">runs</span> <span class="o">=</span> <span class="mi">100000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>runs = 100000
 </pre></div>
 </div>
 </div>
@@ -406,20 +406,20 @@ title="Print to PDF"
 <p>And there we go</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
-    <span class="n">state</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-    <span class="n">winner</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">winner</span><span class="p">()</span>
-    <span class="k">while</span> <span class="n">winner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">state</span><span class="o">.</span><span class="n">next_turn</span><span class="p">()</span>
-        <span class="n">winner</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">winner</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">winner</span><span class="o">==</span><span class="s2">&quot;a&quot;</span><span class="p">:</span>
-        <span class="n">a_wins</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chances for &#39;a&#39; winning: </span><span class="si">{</span><span class="n">a_wins</span><span class="o">/</span><span class="n">runs</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, for &#39;b&#39; winning: </span><span class="si">{</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">a_wins</span><span class="o">/</span><span class="n">runs</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for _ in range(runs):
+    state.reset()
+    winner = state.winner()
+    while winner is None:
+        state.next_turn()
+        winner = state.winner()
+    if winner==&quot;a&quot;:
+        a_wins += 1
+print(f&quot;Chances for &#39;a&#39; winning: {a_wins/runs:.3f}, for &#39;b&#39; winning: {1-(a_wins/runs):.3f}&quot;)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chances for &#39;a&#39; winning: 0.694, for &#39;b&#39; winning: 0.306
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chances for &#39;a&#39; winning: 0.696, for &#39;b&#39; winning: 0.304
 </pre></div>
 </div>
 </div>
