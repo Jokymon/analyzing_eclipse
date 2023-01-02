@@ -39,7 +39,7 @@ jobs:
     - name: Build images
       run: |
         dot statespace.dot -Tsvg -o images/statespace.svg
-        inkscape --export-png images/statespace.png images/statespace.svg
+        inkscape --export-type png --export-filename images/statespace.png images/statespace.svg
     - name: Build book
       run: |
         jupyter-book build .
